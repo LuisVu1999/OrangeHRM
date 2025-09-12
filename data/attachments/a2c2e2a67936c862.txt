@@ -1,0 +1,3 @@
+Fill successfully //input[@name='username']
+Fill successfully //input[@name='password']
+Click successfully //button[@type='submit']

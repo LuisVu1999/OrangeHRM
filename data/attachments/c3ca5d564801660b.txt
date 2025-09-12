@@ -1,0 +1,3 @@
+Click successfully //div[@class='orangehrm-login-forgot']//p
+Fill successfully //input[@name='username']
+Click successfully //button[@type='submit']
