@@ -6,7 +6,7 @@ class LoginLocator:
 
     FORGOT_PASSWORD = "//div[@class='orangehrm-login-forgot']//p"
     SUBMIT_BUTTON = "//button[@type='submit']"
-    SUCCESSFULLY_RESET = "//div[@class='orangehrm-card-container']//h6"
+    SUCCESSFULLY_RESET = "//*[@id='app']/div[1]/div[1]/div/h6"
 
     AVATAR = "//*[@id='app']/div[1]/div[1]/header/div[1]/div[3]/ul/li/span"
     LOGOUT_BUTTON = "//*[@id='app']/div[1]/div[1]/header/div[1]/div[3]/ul/li/ul/li[4]/a"
