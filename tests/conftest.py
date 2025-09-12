@@ -101,7 +101,6 @@ def page_with_video(auth_context, request):
 @pytest.fixture(scope="session")
 def auth_context(pytestconfig):
     """Tạo BrowserContext với storage + video (chỉ bật khi CI)."""
-    AuthHelper.ensure_logged_in()
     browser_name = pytestconfig.getoption("--browser-name")
 
     with sync_playwright() as p:
@@ -111,12 +110,10 @@ def auth_context(pytestconfig):
         # Bật video khi chạy trong CI/CD
         record_dir = None
         if os.getenv("CI"):
-            # record_dir = os.path.join(os.getcwd(), "videos")
             record_dir = os.path.join(os.getcwd(), "videos")
             os.makedirs(record_dir, exist_ok=True)
 
         context = browser.new_context(
-            storage_state=STORAGE_FILE,
             record_video_dir=record_dir,
         )
         context.set_default_timeout(BrowserConfig.DEFAULT_TIMEOUT)

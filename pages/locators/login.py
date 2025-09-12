@@ -1,13 +1,15 @@
 class LoginLocator:
-    USERNAME_INPUT = "#email"
-    PASSWORD_INPUT = "#password"
-    SUBMIT_BUTTON = "#loginSubmitButton"
-    PAGE_TITLE = "//*[@id='topnav-logo-container']/div/a/img[2]"
+    USERNAME_INPUT = "//input[@name='username']"
+    PASSWORD_INPUT = "//input[@name='password']"
+    SUBMIT_BUTTON = "//button[@type='submit']"
+    PAGE_TITLE = "//*[@id='app']/div[1]/div[1]/header/div[1]/div[1]/span/h6"
 
-    FORGOT_PASSWORD = "//a[@data-target='login-forms-forgot']"
-    FORGOT_PASSWORD_BUTTON = "#forgotSubmitButton"
-    SUCCESSFULLY_RESET = "//div[@class='noty_message']"
+    FORGOT_PASSWORD = "//div[@class='orangehrm-login-forgot']//p"
+    SUBMIT_BUTTON = "//button[@type='submit']"
+    SUCCESSFULLY_RESET = "//div[@class='orangehrm-card-container']//h6"
 
-    AVATAR = "//li[@class='nav-item dropdown u-pro']//a[@data-toggle='dropdown']"
-    LOGOUT_BUTTON = "//a[@href='/logout']"
-    SIGNIN_TEXT = "//h4[@class='box-title m-t-10 text-center']"
+    AVATAR = "//*[@id='app']/div[1]/div[1]/header/div[1]/div[3]/ul/li/span"
+    LOGOUT_BUTTON = "//*[@id='app']/div[1]/div[1]/header/div[1]/div[3]/ul/li/ul/li[4]/a"
+    SIGNIN_TEXT = "//div[@class='orangehrm-login-slot']//h5"
+
+    INVALID_CREDENTIAL = "//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/div/div[1]/div[1]/p"

@@ -1,6 +1,6 @@
 # 1. Environment Config (môi trường chạy test)
 class ConfigUrl:
-    BASE_URL = "https://demo.growcrm.io"
+    BASE_URL = "https://opensource-demo.orangehrmlive.com/web/index.php"
     LOGIN_URL = BASE_URL + "/login"
     PROJECT_URL = BASE_URL + "/projects"
     CLIENT_URL = BASE_URL + "/clients"
@@ -10,8 +10,8 @@ class ConfigUrl:
 
 # 2. Credentials (account test cố định)
 class Credentials:
-    ADMIN_USER = "admin@example.com"
-    ADMIN_PASSWORD = "growcrm"
+    ADMIN_USER = "Admin"
+    ADMIN_PASSWORD = "admin123"
 
 # 3. Browser Settings
 class BrowserConfig:
