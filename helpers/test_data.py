@@ -46,4 +46,4 @@ class TestData:
     
     @staticmethod
     def random_int():
-        return faker.random_int(min=50, max = 500)
+        return faker.random_int(min=1, max = 10000)

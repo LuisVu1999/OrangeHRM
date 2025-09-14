@@ -29,17 +29,17 @@ class PunchPage(BasePage):
         self.fill(PunchLocator.MINUTE, minute)
         self.click(PunchLocator.SELECT_AM)
         self.click(PunchLocator.SUBMIT_BUTTON)
-        self.assert_text_contain(PunchLocator.NOTIFY_MESSAGE, punch_successfully, "verify punch successfully")
+        self.assert_text_contain(PunchLocator.NOTIFY_MESSAGE, punch_successfully)
 
         #Punch out
         self.wait_for_load_page()
         self.wait_thread_sleep(4)
-        self.assert_text(PunchLocator.PUNCH_OUT_TITLE, punch_out_title, "verify punch out title")
-        self.assert_text(PunchLocator.PUNCH_IN_TIME, punch_in_time, "verify punch in time")
+        self.assert_text(PunchLocator.PUNCH_OUT_TITLE, punch_out_title)
+        self.assert_text(PunchLocator.PUNCH_IN_TIME, punch_in_time)
         self.fill(PunchLocator.CLICK_DATE_OUT, date)
         self.fill(PunchLocator.CLICK_TIME_OUT, time)
         self.click(PunchLocator.SUBMIT_BUTTON)
-        self.assert_text_contain(PunchLocator.NOTIFY_MESSAGE, punch_successfully, "verify punch successfully")
+        self.assert_text_contain(PunchLocator.NOTIFY_MESSAGE, punch_successfully)
 
     def delete_record(self, date: str):
         self.wait_for_load_page()
@@ -60,11 +60,11 @@ class PunchPage(BasePage):
         self.fill(PunchLocator.CLICK_DATE, date)
         self.click(PunchLocator.SUBMIT_BUTTON)
         self.wait_for_load_page()
-        self.wait_thread_sleep(2)
-        self.assert_text(PunchLocator.VERIFY_TOTAL_HOUR, total_hour, "verify total hour")
-        self.assert_text_contain(PunchLocator.VERIFY_PUNCH_IN, punch_in_time, "verify punch in time")
-        self.assert_text_contain(PunchLocator.VERIFY_PUNCH_OUT, punch_out_time, "verify punch out time")
-        self.assert_text(PunchLocator.VERIFY_DURATION, duration, "verify duration hour")
+        self.wait_thread_sleep(4)
+        self.assert_text(PunchLocator.VERIFY_TOTAL_HOUR, total_hour)
+        self.assert_text_contain(PunchLocator.VERIFY_PUNCH_IN, punch_in_time)
+        self.assert_text_contain(PunchLocator.VERIFY_PUNCH_OUT, punch_out_time)
+        self.assert_text(PunchLocator.VERIFY_DURATION, duration)
 
 
 

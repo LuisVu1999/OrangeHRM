@@ -57,8 +57,8 @@ def pytest_runtest_makereport(item, call):
     setattr(item, "rep_" + rep.when, rep)
 
 @pytest.fixture(scope="function")
-def page_with_video(auth_context, request):
-    page = auth_context.new_page(record_video_dir = "videos/")
+def page_with_video(context, request):
+    page = context.new_page(record_video_dir = "videos/")
     page.goto(ConfigUrl.BASE_URL)
     yield page
     if hasattr(page, "video") and page.video:
@@ -99,35 +99,57 @@ def page_with_video(auth_context, request):
 
 #     page.close()
 
-@pytest.fixture(scope="function")
-def auth_context(pytestconfig):
-    """Tạo BrowserContext với storage + video (luôn bật)."""
-    browser_name = pytestconfig.getoption("--browser-name")
+# @pytest.fixture(scope="function")
+# def auth_context(pytestconfig):
+#     """Tạo BrowserContext với storage + video (luôn bật)."""
+#     browser_name = pytestconfig.getoption("--browser-name")
 
+#     with sync_playwright() as p:
+#         browser_type = getattr(p, browser_name)
+#         browser = browser_type.launch(headless=BrowserConfig.HEADLESS)
+
+#         # Luôn lưu video (local + CI)
+#         record_dir = os.path.join(os.getcwd(), "videos")
+#         os.makedirs(record_dir, exist_ok=True)
+
+#         context = browser.new_context(
+#             record_video_dir=record_dir,
+#         )
+#         context.set_default_timeout(BrowserConfig.DEFAULT_TIMEOUT)
+#         context.set_default_navigation_timeout(BrowserConfig.DEFAULT_TIMEOUT)
+
+#         yield context
+
+#         context.close()
+#         browser.close()
+@pytest.fixture(scope="session")
+def browser(pytestconfig):
+    """Khởi tạo Browser 1 lần cho cả session."""
+    browser_name = pytestconfig.getoption("--browser-name")
     with sync_playwright() as p:
         browser_type = getattr(p, browser_name)
         browser = browser_type.launch(headless=BrowserConfig.HEADLESS)
-
-        # Luôn lưu video (local + CI)
-        record_dir = os.path.join(os.getcwd(), "videos")
-        os.makedirs(record_dir, exist_ok=True)
-
-        context = browser.new_context(
-            record_video_dir=record_dir,
-        )
-        context.set_default_timeout(BrowserConfig.DEFAULT_TIMEOUT)
-        context.set_default_navigation_timeout(BrowserConfig.DEFAULT_TIMEOUT)
-
-        yield context
-
-        context.close()
+        yield browser
         browser.close()
 
+@pytest.fixture(scope="function")
+def context(browser):
+    """Mỗi test có 1 context riêng để isolation."""
+    record_dir = os.path.join(os.getcwd(), "videos")
+    os.makedirs(record_dir, exist_ok=True)
 
-@pytest.fixture
-def page(auth_context, request):
+    context = browser.new_context(record_video_dir=record_dir)
+    context.set_default_timeout(BrowserConfig.DEFAULT_TIMEOUT)
+    context.set_default_navigation_timeout(BrowserConfig.DEFAULT_TIMEOUT)
+
+    yield context
+    context.close()
+
+
+@pytest.fixture(scope="function")
+def page(context, request):
     """Khởi tạo Page, luôn chụp screenshot, attach video khi fail."""
-    page = auth_context.new_page()
+    page = context.new_page()
     page.goto(ConfigUrl.BASE_URL)
     yield page
 

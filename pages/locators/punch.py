@@ -1,6 +1,6 @@
 class PunchLocator:
     #Navigate
-    NAVIGATE_TO_TIME = "//*[@id='app']/div[1]/div[1]/aside/nav/div[2]/ul/li[4]/a"
+    NAVIGATE_TO_TIME = "//a[contains(.,'Time')]"
     ATTENDENCE_DROPDOWN = "//nav[@aria-label='Topbar Menu']//ul//li[2]"
     CLICK_PUNCH = "//ul[@class='oxd-dropdown-menu']//li[2]"
     #Punch in

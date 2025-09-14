@@ -14,7 +14,7 @@ class PimPage(BasePage):
         self.wait_for_load_page()
         self.click(PimLocator.ADD_BUTTON)
         self.wait_thread_sleep(2)
-        self.assert_text(PimLocator.PAGE_TITLE, expected_title, "Assert create page title")
+        self.assert_text(PimLocator.PAGE_TITLE, expected_title)
         self.upload_file(PimLocator.UPLOAD_BUTTON, "resources/avt.jpg")
         self.fill(PimLocator.FIRST_NAME, first_name)
         self.fill(PimLocator.LAST_NAME, last_name)
@@ -29,14 +29,15 @@ class PimPage(BasePage):
 
     def view_employee(self, employee_id: str, first_middle_name: str, last_name: str):
         self.wait_for_load_page()
-        self.assert_text(PimLocator.VERIFY_ID, employee_id, "verify employee id")
-        self.assert_text(PimLocator.VERIFY_FIRST_MIDDLE_NAME, first_middle_name, "verify first middle name")
-        self.assert_text(PimLocator.VERIFY_LAST_NAME, last_name, "verify last name")
-        self.assert_visible(PimLocator.VERIFY_ACTION_EDIT, "verify edit button")
-        self.assert_visible(PimLocator.VERIFY_ACTION_DELETE, "verify delete button")
+        self.assert_text(PimLocator.VERIFY_ID, employee_id)
+        self.assert_text(PimLocator.VERIFY_FIRST_MIDDLE_NAME, first_middle_name)
+        self.assert_text(PimLocator.VERIFY_LAST_NAME, last_name)
+        self.assert_visible(PimLocator.VERIFY_ACTION_EDIT)
+        self.assert_visible(PimLocator.VERIFY_ACTION_DELETE)
 
     def edit_employee(self, first_name: str, last_name:str, middle_name: str, emp_id:str, supervisor_name: str, edit_successfully: str):
         self.wait_for_load_page()
+        self.wait_thread_sleep(3)
         self.click(PimLocator.VERIFY_FIRST_MIDDLE_NAME)
         self.wait_for_load_page()
         self.fill(PimLocator.FIRST_NAME, first_name)
@@ -67,6 +68,7 @@ class PimPage(BasePage):
         self.assert_text_contain(PimLocator.NOTIFY_MESSAGE, "Successfully Saved")
 
     def delete_employee(self, deleted_successfully: str):
+        self.wait_thread_sleep(3)
         self.click(PimLocator.VERIFY_ACTION_DELETE)
         self.click(PimLocator.CONFIRM_DELETE)
         self.assert_text_contain(PimLocator.NOTIFY_MESSAGE, deleted_successfully)
@@ -83,10 +85,10 @@ class PimPage(BasePage):
     def view_employee_after_edited(self, employee_id: str, first_middle_name: str, last_name: str,
                                    job_title: str, employee_status: str, sub_unit: str, supervisor: str):
         self.wait_for_load_page()
-        self.assert_text(PimLocator.VERIFY_ID, employee_id, "verify employee id")
-        self.assert_text(PimLocator.VERIFY_FIRST_MIDDLE_NAME, first_middle_name, "verify first middle name")
-        self.assert_text(PimLocator.VERIFY_LAST_NAME, last_name, "verify last name")
-        self.assert_text(PimLocator.VERIFY_JOB_TITLE, job_title, "verify job title")
-        self.assert_text(PimLocator.VERIFY_EMPLOYEE_STATUS, employee_status, "verify employee status")
-        self.assert_text(PimLocator.VERIFY_SUB_UNIT, sub_unit, "verify sub_unit")
-        self.assert_text(PimLocator.VERIFY_SUPPERVISOR, supervisor, "verify supervisor")
+        self.assert_text(PimLocator.VERIFY_ID, employee_id)
+        self.assert_text(PimLocator.VERIFY_FIRST_MIDDLE_NAME, first_middle_name)
+        self.assert_text(PimLocator.VERIFY_LAST_NAME, last_name)
+        self.assert_text(PimLocator.VERIFY_JOB_TITLE, job_title)
+        self.assert_text(PimLocator.VERIFY_EMPLOYEE_STATUS, employee_status)
+        self.assert_text(PimLocator.VERIFY_SUB_UNIT, sub_unit)
+        self.assert_text(PimLocator.VERIFY_SUPPERVISOR, supervisor)

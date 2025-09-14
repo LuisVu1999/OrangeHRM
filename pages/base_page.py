@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 import time
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+from config import ConfigUrl, BrowserConfig, Paths, ENVIRONMENTS
 
 class BasePage:
     def __init__(self, page : Page):
@@ -9,41 +10,61 @@ class BasePage:
     def navigate(self, url : str):
         self.page.goto(url)
         
-    def click(self, locator: str, timeout: int = 60000, retries : int = 5, delay : int = 500):  # Thoi gian doi max: 5s, so lan doi la 5, thoi gian nghi la 500ms
-        attempt = 0
-        while attempt < retries:  #Lap cho den khi den het so lan retry
-            try:
-                self.page.wait_for_selector(locator, state="visible", timeout=timeout) # Doi cho den khi element hien, neu qua thoi gian timeout thi -> raise timeout error
-                element = self.page.locator(locator)
-                element.click()  # Neu thanh cong thi in ra 
-                print(f"Click successfully {locator}")
-                return  #Thoat vi da click thanh cong
-            except PlaywrightTimeoutError:
-                print(f"Timeout: Cannot find {locator}, retry {retries+1}/{retries} ")  #Neu khong tin thay element trong tgian timeout -> in ra log
-            except Exception as e:
-                print(f"Failed for click {locator} : {e}, retry {retries+1}/{retries}") #Bat cac loi khac (ví dụ element bị che, detached, …) va in ra log
+    # def click(self, locator: str, timeout: int = 120000, retries : int = 5, delay : int = 500):  # Thoi gian doi max: 5s, so lan doi la 5, thoi gian nghi la 500ms
+    #     attempt = 0
+    #     while attempt < retries:  #Lap cho den khi den het so lan retry
+    #         try:
+    #             self.wait_for_element_visible(locator) # Doi cho den khi element hien, neu qua thoi gian timeout thi -> raise timeout error
+    #             element = self.page.locator(locator)
+    #             element.click()  # Neu thanh cong thi in ra 
+    #             print(f"Click successfully {locator}")
+    #             return  #Thoat vi da click thanh cong
+    #         except PlaywrightTimeoutError:
+    #             print(f"Timeout: Cannot find {locator}, retry {retries+1}/{retries} ")  #Neu khong tin thay element trong tgian timeout -> in ra log
+    #         except Exception as e:
+    #             print(f"Failed for click {locator} : {e}, retry {retries+1}/{retries}") #Bat cac loi khac (ví dụ element bị che, detached, …) va in ra log
 
-            attempt +=1  #Tang so lan len 1 sau moi lan thu
-            time.sleep(delay/1000.0)  #Cho khoang 1s
-        raise Exception (f"Cannot click {locator} after retry {retries} times") #Neu het so lan retry ma van loi thi in ra loi
+    #         attempt +=1  #Tang so lan len 1 sau moi lan thu
+    #         time.sleep(delay/1000.0)  #Cho khoang 1s
+    #     raise Exception (f"Cannot click {locator} after retry {retries} times") #Neu het so lan retry ma van loi thi in ra loi
 
-    def fill(self, locator: str, text: str, timeout: int = 60000, retries: int = 5, delay: int = 500):
-        attempt = 0
-        while attempt < retries:
-            try:
-                self.page.wait_for_selector(locator, state="visible", timeout=timeout)
-                element = self.page.locator(locator)
-                element.fill(text)
-                print(f"Fill successfully {locator}")
-                return
-            except PlaywrightTimeoutError:
-                print(f"Timeout: Cannot find {locator}, retry {retries+1}/{retries} ")
-            except Exception as e:
-                print(f"Failed for fill {locator} : {e}, retry {retries+1}/{retries}")
+    # def fill(self, locator: str, text: str, timeout: int = 120000, retries: int = 5, delay: int = 500):
+    #     attempt = 0
+    #     while attempt < retries:
+    #         try:
+    #             self.wait_for_element_visible(locator)
+    #             element = self.page.locator(locator)
+    #             element.fill(text)
+    #             print(f"Fill successfully {locator}")
+    #             return
+    #         except PlaywrightTimeoutError:
+    #             print(f"Timeout: Cannot find {locator}, retry {retries+1}/{retries} ")
+    #         except Exception as e:
+    #             print(f"Failed for fill {locator} : {e}, retry {retries+1}/{retries}")
 
-            attempt += 1
-            time.sleep(delay/1000.0)
-        raise Exception(f"Cannot fill {locator} after retry {retries} times")
+    #         attempt += 1
+    #         time.sleep(delay/1000.0)
+    #     raise Exception(f"Cannot fill {locator} after retry {retries} times")
+
+    def click(self, locator: str):
+        try:
+            element = self.page.locator(locator)
+            element.click(timeout=BrowserConfig.DEFAULT_TIMEOUT)
+            print(f"Click successfully {locator}")
+        except PlaywrightTimeoutError:
+            raise Exception(f"Timeout: Cannot click {locator} within {BrowserConfig.DEFAULT_TIMEOUT} ms")
+        except Exception as e:
+            raise Exception(f"Failed to click {locator}: {e}")
+
+    def fill(self, locator: str, text: str):
+        try:
+            element = self.page.locator(locator)
+            element.fill(text, timeout=BrowserConfig.DEFAULT_TIMEOUT)
+            print(f"Fill successfully {locator} with text '{text}'")
+        except PlaywrightTimeoutError:
+            raise Exception(f"Timeout: Cannot fill {locator} within {BrowserConfig.DEFAULT_TIMEOUT} ms")
+        except Exception as e:
+            raise Exception(f"Failed to fill {locator}: {e}")
 
     def is_visible(self, locator: str) -> bool:
         return self.page.is_visible(locator)
@@ -52,10 +73,10 @@ class BasePage:
         time.sleep(seconds)
 
     def wait_for_load_page (self):
-        self.page.wait_for_load_state("networkidle")
+        self.page.wait_for_load_state("networkidle", timeout=BrowserConfig.DEFAULT_TIMEOUT)
 
     def wait_for_element_visible(self, locator: str):
-        self.page.wait_for_selector(locator)
+        self.page.wait_for_selector(locator, state="visible", timeout=BrowserConfig.DEFAULT_TIMEOUT)
 
     # def wait_for_element_enable(self, locator: str):
     #     self.page.locator(locator).wait_for(state="enable")
@@ -63,34 +84,40 @@ class BasePage:
     def keyboard (self, key : str):
         self.page.keyboard.press(key)
 
-    def assert_text (self, locator: str, expected_result: str, message = ""):
-        self.wait_for_element_visible(locator)
-        actual_result = self.page.text_content(locator).strip()
-        assert actual_result == expected_result, (message or f"Text mismatch. Expected: '{expected_result}', but got: '{actual_result}'")
+    # def assert_text (self, locator: str, expected_result: str, message = ""):
+    #     self.wait_for_element_visible(locator)
+    #     actual_result = self.page.text_content(locator).strip()
+    #     assert actual_result == expected_result, (message or f"Text mismatch. Expected: '{expected_result}', but got: '{actual_result}'")
+
+    def assert_text(self, locator: str, expected: str):
+        element = self.page.locator(locator)
+        expect(element).to_have_text(expected, timeout=BrowserConfig.DEFAULT_TIMEOUT)
+
 
     def assert_have_text(self, locator: str, message: str = None):
+        self.wait_for_element_visible(locator)
         element = self.page.locator(locator)
         text = element.inner_text().strip()
         assert text is not None and text != "", message or f"Element '{locator}' has no text"
-        # return text
+        return text
 
-    def assert_text_contain(self, locator: str, expected_substring: str, timeout: int = 60000, message = ""):
-        self.wait_for_element_visible(locator)
-        actual_result = self.page.text_content(locator).strip()
-        assert actual_result and expected_substring in actual_result, (message or f"Text mismatch. Expected: '{expected_substring}', but got: '{actual_result}'")
+    def assert_text_contain(self, locator: str, expected_substring: str):
+        element = self.page.locator(locator)
+        expect(element).to_contain_text(expected_substring, timeout=BrowserConfig.DEFAULT_TIMEOUT)
 
     def assert_attribute(self, locator: str, name: str, expected_value: str, message = ""):
+        self.wait_for_element_visible(locator)
         actual_value = self.page.locator(locator).get_attribute(name)
         assert actual_value == expected_value, (message or f"Value mismatch. Expected: '{expected_value}', but got: '{actual_value}")
 
-    def assert_visible(self, locator: str, message = ""):
-        self.wait_for_element_visible(locator)
-        assert self.page.is_visible(locator), message or f"Element '{locator}' not visible"
+    def assert_visible(self, locator: str):
+        element = self.page.locator(locator)
+        expect(element).to_be_visible(timeout=BrowserConfig.DEFAULT_TIMEOUT)
         # assert self.page.is
 
-    def assert_is_selected(self, locator: str, message = ""):
-        self.wait_for_element_visible(locator)
-        assert self.page.is_checked(locator), message or f"Element '{locator}' is not checked"
+    def assert_is_selected(self, locator: str):
+        element = self.page.locator(locator)
+        expect(element).to_be_checked(timeout=BrowserConfig.DEFAULT_TIMEOUT)
 
     def upload_file(self, locator: str, file_path: str):
         self.page.set_input_files(locator, file_path)
@@ -129,6 +156,7 @@ class BasePage:
             current_value = int(float(handle.get_attribute(attribute_name) or 0))
 
     def type_text(self, locator: str, text: str, delay: float = 0.1, clear: bool = True,):
+        self.wait_for_element_visible(locator)
         element = self.page.locator(locator)
         element.click()
         if clear:
@@ -137,6 +165,7 @@ class BasePage:
             element.type(char, delay = delay)
 
     def hover_mouse_over(self, locator: str):
+        self.wait_for_element_visible(locator)
         self.page.hover(locator)
 
     def fill_iframe(self, frame_locator: str, element_insider_iframe: str, text: str):

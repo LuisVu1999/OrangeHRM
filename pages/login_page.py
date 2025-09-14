@@ -21,7 +21,7 @@ class LoginPage(BasePage):
     def logout(self, signin_text: str):
         self.click(LoginLocator.AVATAR)
         self.click(LoginLocator.LOGOUT_BUTTON)
-        self.assert_text_contain(LoginLocator.SIGNIN_TEXT, signin_text, "Verify Sign In Page")
+        self.assert_text_contain(LoginLocator.SIGNIN_TEXT, signin_text)
 
     def login_with_wrong_pass(self, username: str, password: str, expected_result:str):
         self.fill(LoginLocator.USERNAME_INPUT, username)
