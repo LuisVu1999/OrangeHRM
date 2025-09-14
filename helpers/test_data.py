@@ -17,6 +17,14 @@ class TestData:
         return faker.last_name()
     
     @staticmethod
+    def random_user_name():
+        return faker.user_name()
+    
+    @staticmethod
+    def random_password():
+        return faker.password()
+    
+    @staticmethod
     def random_company():
         return faker.company()
     

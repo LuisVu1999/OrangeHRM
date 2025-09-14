@@ -1,0 +1,42 @@
+class LeaveLocator:
+    #Navigate
+    NAGIVATE_TO_LEAVE = "//a[@href='/web/index.php/leave/viewLeaveModule']"
+    ENTITLEMENT_DROPDOWN = "//nav[@aria-label='Topbar Menu']//ul//li[3]"
+    ADD_ENTITLEMENT = "//ul[@class='oxd-dropdown-menu']//li[1]"
+    #Add Leave Entitlement
+    ADD_ENTITLEMENT_TITLE= "//p[@class='oxd-text oxd-text--p orangehrm-main-title']"
+    EMPLOYEE_NAME = "//input[@placeholder='Type for hints...']"
+    SELECT_EMPLOYEE = "//div[@role='option'][1]"
+    LEAVE_TYPE_DROPDOWN = "(//div[@class='oxd-select-text oxd-select-text--active'])[1]"
+    SELECT_VACATION = "//div[@role='option'][6]"
+    ENTITLEMENT = "(//input[@class='oxd-input oxd-input--active'])[2]"
+    SAVE_BUTTON = "//button[@type='submit']"
+    CONFIRM_BUTTON = "//*[@id='app']/div[3]/div/div/div/div[3]/button[2]"
+    NOTIFY_MESSAGE = "//div[@aria-live='assertive']"
+    INVIDUAL_EMPLOYEE = "(//div[@class='oxd-radio-wrapper']//label)[1]"
+    #Apply Leave
+    CLICK_APPLY = "//nav[@aria-label='Topbar Menu']//ul//li[1]"
+    APPLY_LEAVE_TITLE = "(//h6[@class='oxd-text oxd-text--h6 orangehrm-main-title'])[1]"
+    LEAVE_TYPE_APPLY = "(//div[@class='oxd-select-text oxd-select-text--active'])[1]"
+    SELECT_VACATION_APPLY = "//div[@role='option'][2]"
+    LEAVE_BALANCE = "//p[@class='oxd-text oxd-text--p orangehrm-leave-balance-text']"
+    SELECT_FROM_DATE = "(//div[@class='oxd-date-input']//input)[1]"
+    SELECT_TO_DATE = "(//div[@class='oxd-date-input']//input)[2]"
+    DURATION_DROPDOWN = "(//div[@class='oxd-select-text oxd-select-text--active'])[2]"
+    SELECT_HALF_MORNING = "//div[@role='option'][2]"
+    #Before Approve
+    DATE_RECORD = "//*[@id='app']/div[1]/div[2]/div[2]/div/div[1]/div[3]/div/div[2]/div/div/div[1]"
+    HOUR_RECORD = "//div[@class='oxd-table-card']//div//div[2]"
+    LEAVE_TYPE_RECORD = "//div[@class='oxd-table-card']//div//div[3]"
+    STATUS_RECORD = "//div[@class='oxd-table-card']//div//div[4]"
+    #Approve Leave
+    LEAVE_LIST = "//nav[@aria-label='Topbar Menu']//ul//li[5]"
+    DATE_APPROVE = "//div[@class='oxd-table-card']//div//div[2]"
+    EMPLOYEE_APPROVE = "//div[@class='oxd-table-card']//div//div[3]"
+    LEAVE_TYPE_APPROVE = "//div[@class='oxd-table-card']//div//div[4]"
+    LEAVE_BALANCE_APPROVE = "//div[@class='oxd-table-card']//div//div[5]"
+    NUMBER_DAYS_APPROVE = "//div[@class='oxd-table-card']//div//div[6]"
+    STATUS_APPROVE = "//div[@class='oxd-table-card']//div//div[7]"
+    APPROVE_BUTTON = "//button[contains(.,'Approve')]"
+    REJECT_BUTTON = "//button[contains(.,'Reject')]"
+    #After Reject

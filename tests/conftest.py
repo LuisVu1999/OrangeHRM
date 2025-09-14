@@ -21,6 +21,7 @@ def pytest_addoption(parser):
     """Thêm CLI option: chọn env, browser"""
     parser.addoption("--env", action="store", default="dev", help="dev/staging/prod")
     parser.addoption("--browser-name", action="store", default="chromium", help="chromium/firefox/webkit")
+    parser.addoption("--record-video", action="store_true", help="Bật quay video khi chạy local")
 
 @pytest.fixture
 def env_config(request):
@@ -98,20 +99,18 @@ def page_with_video(auth_context, request):
 
 #     page.close()
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def auth_context(pytestconfig):
-    """Tạo BrowserContext với storage + video (chỉ bật khi CI)."""
+    """Tạo BrowserContext với storage + video (luôn bật)."""
     browser_name = pytestconfig.getoption("--browser-name")
 
     with sync_playwright() as p:
         browser_type = getattr(p, browser_name)
         browser = browser_type.launch(headless=BrowserConfig.HEADLESS)
 
-        # Bật video khi chạy trong CI/CD
-        record_dir = None
-        if os.getenv("CI"):
-            record_dir = os.path.join(os.getcwd(), "videos")
-            os.makedirs(record_dir, exist_ok=True)
+        # Luôn lưu video (local + CI)
+        record_dir = os.path.join(os.getcwd(), "videos")
+        os.makedirs(record_dir, exist_ok=True)
 
         context = browser.new_context(
             record_video_dir=record_dir,

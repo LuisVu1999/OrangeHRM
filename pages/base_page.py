@@ -64,7 +64,7 @@ class BasePage:
         self.page.keyboard.press(key)
 
     def assert_text (self, locator: str, expected_result: str, message = ""):
-        self.page.wait_for_selector(locator)
+        self.wait_for_element_visible(locator)
         actual_result = self.page.text_content(locator).strip()
         assert actual_result == expected_result, (message or f"Text mismatch. Expected: '{expected_result}', but got: '{actual_result}'")
 
@@ -74,7 +74,8 @@ class BasePage:
         assert text is not None and text != "", message or f"Element '{locator}' has no text"
         # return text
 
-    def assert_text_contain(self, locator: str, expected_substring: str, message = ""):
+    def assert_text_contain(self, locator: str, expected_substring: str, timeout: int = 60000, message = ""):
+        self.wait_for_element_visible(locator)
         actual_result = self.page.text_content(locator).strip()
         assert actual_result and expected_substring in actual_result, (message or f"Text mismatch. Expected: '{expected_substring}', but got: '{actual_result}'")
 
@@ -83,8 +84,16 @@ class BasePage:
         assert actual_value == expected_value, (message or f"Value mismatch. Expected: '{expected_value}', but got: '{actual_value}")
 
     def assert_visible(self, locator: str, message = ""):
+        self.wait_for_element_visible(locator)
         assert self.page.is_visible(locator), message or f"Element '{locator}' not visible"
         # assert self.page.is
+
+    def assert_is_selected(self, locator: str, message = ""):
+        self.wait_for_element_visible(locator)
+        assert self.page.is_checked(locator), message or f"Element '{locator}' is not checked"
+
+    def upload_file(self, locator: str, file_path: str):
+        self.page.set_input_files(locator, file_path)
 
     # def drag_slide_to_value(self, locator: str, target_value: int, max_value: int = 100):
     #     slider = self.page.locator(locator)  #Tim element cua slider

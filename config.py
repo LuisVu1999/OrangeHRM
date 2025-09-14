@@ -12,6 +12,9 @@ class ConfigUrl:
 class Credentials:
     ADMIN_USER = "Admin"
     ADMIN_PASSWORD = "admin123"
+    USER_FULL_NAME = "Luis Luis Vu"
+    USER_PASSWORD = "luistest12!@"
+    USER_USERNAME = "Luisvu"
 
 # 3. Browser Settings
 class BrowserConfig:

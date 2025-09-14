@@ -28,3 +28,8 @@ class LoginPage(BasePage):
         self.fill(LoginLocator.PASSWORD_INPUT, password)
         self.click(LoginLocator.SUBMIT_BUTTON)
         self.assert_text_contain(LoginLocator.INVALID_CREDENTIAL, expected_result)
+
+    def login_empty_credentials(self, expected_result:str):
+        self.click(LoginLocator.SUBMIT_BUTTON)
+        self.assert_text_contain(LoginLocator.ERROR_USER, expected_result)
+        self.assert_text_contain(LoginLocator.ERROR_PASS, expected_result)

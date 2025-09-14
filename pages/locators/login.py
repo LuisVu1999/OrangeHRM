@@ -8,8 +8,11 @@ class LoginLocator:
     SUBMIT_BUTTON = "//button[@type='submit']"
     SUCCESSFULLY_RESET = "//*[@id='app']/div[1]/div[1]/div/h6"
 
-    AVATAR = "//*[@id='app']/div[1]/div[1]/header/div[1]/div[3]/ul/li/span"
-    LOGOUT_BUTTON = "//*[@id='app']/div[1]/div[1]/header/div[1]/div[3]/ul/li/ul/li[4]/a"
+    AVATAR = "//span[@class='oxd-userdropdown-tab']"
+    LOGOUT_BUTTON = "//a[contains(text(),'Logout')]"
     SIGNIN_TEXT = "//div[@class='orangehrm-login-slot']//h5"
 
     INVALID_CREDENTIAL = "//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/div/div[1]/div[1]/p"
+
+    ERROR_USER= "//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/span"
+    ERROR_PASS = "//*[@id='app']/div[1]/div/div[1]/div/div[2]/div[2]/form/div[2]/div/span"
