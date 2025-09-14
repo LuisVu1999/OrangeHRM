@@ -4,7 +4,7 @@ class PunchLocator:
     ATTENDENCE_DROPDOWN = "//nav[@aria-label='Topbar Menu']//ul//li[2]"
     CLICK_PUNCH = "//ul[@class='oxd-dropdown-menu']//li[2]"
     #Punch in
-    PUNCH_IN_TITLE = "//h6[@class='oxd-text oxd-text--h6 orangehrm-main-title']"
+    PUNCH_IN_TITLE = "//*[@id='app']/div[1]/div[2]/div[2]/div/div/h6"
     CLICK_DATE = "//div[@class='oxd-date-input']//input"
     CLICK_YEAR = "//li[@class='oxd-calendar-selector-year']"
     SELECT_YEAR = "//li[contains(text(),'2025')]"

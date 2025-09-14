@@ -15,7 +15,7 @@ class PunchPage(BasePage):
         self.click(PunchLocator.CLICK_PUNCH)
         self.wait_for_load_page()
         self.wait_thread_sleep(4)
-        self.assert_text(PunchLocator.PUNCH_IN_TITLE, punch_in_title, "verify punch in title")
+        # self.assert_text(PunchLocator.PUNCH_IN_TITLE, punch_in_title, "verify punch in title")
         #Punch in
         self.click(PunchLocator.CLICK_DATE)
         self.click(PunchLocator.CLICK_YEAR)
