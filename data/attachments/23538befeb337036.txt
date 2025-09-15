@@ -1,5 +1,0 @@
-Fill successfully //input[@name='username']
-Fill successfully //input[@name='password']
-Click successfully //button[@type='submit']
-Click successfully //*[@id='app']/div[1]/div[1]/header/div[1]/div[3]/ul/li/span
-Click successfully //*[@id='app']/div[1]/div[1]/header/div[1]/div[3]/ul/li/ul/li[4]/a
