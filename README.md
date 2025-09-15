@@ -1,4 +1,5 @@
-# 🎭 Playwright Pytest Framework
+# 🎭 Playwright + Pytest Automation Framework
+🚀 CI/CD | 📊 Allure Reporting | 🌐 UI & API Testing
 
 [![CI](https://github.com/LuisVu1999/OrangeHRM/actions/workflows/playwright.yml/badge.svg)](https://github.com/LuisVu1999/OrangeHRM/actions/workflows/playwright.yml)
 [![Allure Report](https://img.shields.io/badge/Allure-Report-ED1C24?logo=allure&logoColor=white)](https://luisvu1999.github.io/OrangeHRM/)
@@ -10,7 +11,8 @@
 ---
 
 ## 📖 Overview
-This repository contains a **modular automation framework** built with **Python, Playwright, and Pytest**.  
+This framework was built as part of my portfolio project to demonstrate automation skills in Playwright + Pytest, covering UI and API testing for the OrangeHRM demo application.
+This repository contains a **modular automation framework** built with **Python, Playwright, and Pytest**.  The framework integrates seamlessly with CI/CD pipelines and generates rich Allure reports.
 
 ✨ Key features:
 - Page Object Model (POM) for UI tests
@@ -19,7 +21,7 @@ This repository contains a **modular automation framework** built with **Python,
 - Rich **Allure Reports** with screenshots & logs
 - CI/CD via **GitHub Actions** + auto-published reports  
 
-🔗 **Live Demo Report** → [Allure Report on GitHub Pages](https://luisvu1999.github.io/playwright-pytest-framework/)
+🔗 **Live Demo Report** → [Allure Report on GitHub Pages](https://luisvu1999.github.io/OrangeHRM/)
 
 ---
 
@@ -127,7 +129,7 @@ playwright-pytest-framework/
 
 - **Name:** Luis Vu  
 - **📧 Email:** Quyvuduc123456@gmail.com  
-- **🔗 LinkedIn:** [Profile](https://www.linkedin.com/in/vu-luis-b434b21b2/)  
+- **🔗 LinkedIn:** [Luis Vu](https://www.linkedin.com/in/vu-luis-b434b21b2/)  
 - **💻 GitHub:** [LuisVu1999](https://github.com/LuisVu1999)  
 
 ---
