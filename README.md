@@ -1,7 +1,7 @@
 # 🎭 Playwright Pytest Framework
 
-[![CI](https://github.com/LuisVu1999/playwright-pytest-framework/actions/workflows/playwright.yml/badge.svg)](https://github.com/LuisVu1999/playwright-pytest-framework/actions/workflows/playwright.yml)
-[![Allure Report](https://img.shields.io/badge/Allure-Report-ED1C24?logo=allure&logoColor=white)](https://luisvu1999.github.io/playwright-pytest-framework/)
+[![CI](https://github.com/LuisVu1999/OrangeHRM/actions/workflows/playwright.yml/badge.svg)](https://github.com/LuisVu1999/OrangeHRM/actions/workflows/playwright.yml)
+[![Allure Report](https://img.shields.io/badge/Allure-Report-ED1C24?logo=allure&logoColor=white)](https://luisvu1999.github.io/OrangeHRM/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-blue?logo=linkedin)](https://www.linkedin.com/in/vu-luis-b434b21b2/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -86,7 +86,7 @@ playwright install
   ```
 
 - **GitHub Pages (CI/CD)**  
-  Auto-published after each pipeline run → 👉 [Latest Allure Report](https://luisvu1999.github.io/playwright-pytest-framework/)
+  Auto-published after each pipeline run → 👉 [Latest Allure Report](https://luisvu1999.github.io/OrangeHRM/)
 
 ---
 
