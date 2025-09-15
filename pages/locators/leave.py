@@ -17,7 +17,7 @@ class LeaveLocator:
     #Apply Leave
     CLICK_APPLY = "//nav[@aria-label='Topbar Menu']//ul//li[1]"
     APPLY_LEAVE_TITLE = "(//h6[@class='oxd-text oxd-text--h6 orangehrm-main-title'])[1]"
-    LEAVE_TYPE_APPLY = "(//div[@class='oxd-select-text oxd-select-text--active'])[1]"
+    LEAVE_TYPE_APPLY = "//i[@class='oxd-icon bi-caret-down-fill oxd-select-text--arrow']"
     SELECT_VACATION_APPLY = "//div[@role='option'][2]"
     LEAVE_BALANCE = "//p[@class='oxd-text oxd-text--p orangehrm-leave-balance-text']"
     SELECT_FROM_DATE = "(//div[@class='oxd-date-input']//input)[1]"

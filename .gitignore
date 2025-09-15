@@ -62,4 +62,4 @@ auth.json
 cookies.json
 storageState.json
 
-.webm
+*.webm

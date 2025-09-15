@@ -19,8 +19,8 @@ def test_create_user(page):
     #1. Create emp
     pim_page.naviage_to_pim()
     pim_page.create_employee("Add Employee", first_name, last_name, middle_name,
-                             f"19612{TestData.random_int()}",TestData.random_user_name(),password, password, "Success")
+                             f"19612{TestData.random_int()}",f"title4_{TestData.random_user_name()}",password, password, "Success")
 
     #2. Create role
     admin_page.navigate_to_admin()
-    admin_page.create_user("Add User", f"Title_{TestData.random_user_name()}", TestData.random_password(), full_emp_name, "Success")
+    admin_page.create_user("Add User", f"Title5_{TestData.random_user_name()}", TestData.random_password(), full_emp_name, "Success")

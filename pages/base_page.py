@@ -10,42 +10,6 @@ class BasePage:
     def navigate(self, url : str):
         self.page.goto(url)
         
-    # def click(self, locator: str, timeout: int = 120000, retries : int = 5, delay : int = 500):  # Thoi gian doi max: 5s, so lan doi la 5, thoi gian nghi la 500ms
-    #     attempt = 0
-    #     while attempt < retries:  #Lap cho den khi den het so lan retry
-    #         try:
-    #             self.wait_for_element_visible(locator) # Doi cho den khi element hien, neu qua thoi gian timeout thi -> raise timeout error
-    #             element = self.page.locator(locator)
-    #             element.click()  # Neu thanh cong thi in ra 
-    #             print(f"Click successfully {locator}")
-    #             return  #Thoat vi da click thanh cong
-    #         except PlaywrightTimeoutError:
-    #             print(f"Timeout: Cannot find {locator}, retry {retries+1}/{retries} ")  #Neu khong tin thay element trong tgian timeout -> in ra log
-    #         except Exception as e:
-    #             print(f"Failed for click {locator} : {e}, retry {retries+1}/{retries}") #Bat cac loi khac (ví dụ element bị che, detached, …) va in ra log
-
-    #         attempt +=1  #Tang so lan len 1 sau moi lan thu
-    #         time.sleep(delay/1000.0)  #Cho khoang 1s
-    #     raise Exception (f"Cannot click {locator} after retry {retries} times") #Neu het so lan retry ma van loi thi in ra loi
-
-    # def fill(self, locator: str, text: str, timeout: int = 120000, retries: int = 5, delay: int = 500):
-    #     attempt = 0
-    #     while attempt < retries:
-    #         try:
-    #             self.wait_for_element_visible(locator)
-    #             element = self.page.locator(locator)
-    #             element.fill(text)
-    #             print(f"Fill successfully {locator}")
-    #             return
-    #         except PlaywrightTimeoutError:
-    #             print(f"Timeout: Cannot find {locator}, retry {retries+1}/{retries} ")
-    #         except Exception as e:
-    #             print(f"Failed for fill {locator} : {e}, retry {retries+1}/{retries}")
-
-    #         attempt += 1
-    #         time.sleep(delay/1000.0)
-    #     raise Exception(f"Cannot fill {locator} after retry {retries} times")
-
     def click(self, locator: str):
         try:
             element = self.page.locator(locator)
@@ -179,7 +143,7 @@ class BasePage:
         self.page.wait_for_timeout(500)
         self.click(locator)
 
-    def test_debug(self):  #Chen ngay truoc dong loi
+    def test_debug(self): 
         self.page.pause()
 
     def expect_url(self, url: str):

@@ -17,7 +17,6 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-          # Có thể thêm: cache: 'pip'
 
       - name: Install dependencies
         run: |
@@ -25,11 +24,9 @@ jobs:
           pip install -r requirements.txt
           pip install allure-pytest
           pip install playwright
-          # Nếu bạn cần chạy song song / rerun:
           pip install pytest-xdist pytest-rerunfailures
           python -m playwright install --with-deps
 
-      # (ĐÃ bỏ bước "Ensure browsers are installed" vì đã làm ở trên)
       - name: Check environment health
         run: |
           echo "=== Installed Python packages ==="
@@ -41,7 +38,6 @@ jobs:
       - name: Run tests (generate allure-results)
         run: |
           pytest --env=dev --browser-name=chromium --alluredir=allure-results
-          # Nếu muốn song song & retry, bật thêm hai dòng bên dưới
           pytest -v -n 2 --reruns 3 --env=dev --browser-name=chromium --alluredir=allure-results
 
       - name: Upload allure results artifact (retained 7 days)

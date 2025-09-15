@@ -34,7 +34,7 @@ def test_view_user(page):
     first_last_emp_name = f"{first_name} {last_name}"
 
     #1.2.Create User Role
-    user_name_role = f"Title_{TestData.random_user_name()}"
+    user_name_role = f"Title6_{TestData.random_user_name()}"
 
     #2. Create Emp
     login_page.login(Credentials.ADMIN_USER, Credentials.ADMIN_PASSWORD)

@@ -19,7 +19,7 @@ def test_verify_record(page):
     total_hour = "Total Duration (Hours): 6.00"
     duration = "6.00"
     password = TestData.random_password()
-    user_name = f"Ttitle_{TestData.random_user_name()}"
+    user_name = f"Ttitle104_{TestData.random_user_name()}"
 
     #1. Create emp
     login_page.login(Credentials.ADMIN_USER, Credentials.ADMIN_PASSWORD)

@@ -27,9 +27,9 @@ class LeavePage(BasePage):
 
     def apply_leave(self, apply_leave_title: str, date_time: str, leave_balance: str, successfully_message: str):
         self.click(LeaveLocator.CLICK_APPLY)
-        self.wait_thread_sleep(2)
+        self.wait_thread_sleep(4)
         self.assert_text(LeaveLocator.APPLY_LEAVE_TITLE, apply_leave_title)
-        self.click(LeaveLocator.LEAVE_TYPE_DROPDOWN)
+        self.click(LeaveLocator.LEAVE_TYPE_APPLY)
         self.click(LeaveLocator.SELECT_VACATION_APPLY)
         self.fill(LeaveLocator.SELECT_FROM_DATE, date_time)
         self.wait_thread_sleep(2)

@@ -19,7 +19,7 @@ def test_search_verify_user(page):
     first_last_emp_name = f"{first_name} {last_name}"
 
     #1.2.Create User Role
-    user_name_role = f"Title_{TestData.random_user_name()}"
+    user_name_role = f"Title7_{TestData.random_user_name()}"
     role = "ESS"
     status = "Enabled"
 

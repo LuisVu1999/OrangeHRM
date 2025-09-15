@@ -13,7 +13,7 @@ def test_edit_empy(page):
     middle_name_prepare = TestData.random_first_name()
     first_middle_last_name_prepare = f"{first_name_prepare} {last_name_prepare}"
     employee_id_prepare = f"194{TestData.random_int()}"
-    user_name_prepare = TestData.random_user_name()
+    user_name_prepare = f"title101_{TestData.random_user_name()}"
 
     #Create Emp
     password = TestData.random_password()
@@ -22,7 +22,7 @@ def test_edit_empy(page):
     middle_name_create = TestData.random_first_name()
     first_middle_name_create = f"{first_name_create} {middle_name_create}"
     employee_id_create = f"193{TestData.random_int()}"
-    user_name_create = TestData.random_user_name()
+    user_name_create = f"title102_{TestData.random_user_name()}"
 
     #Modify Emp
     first_name_edited = TestData.random_first_name()

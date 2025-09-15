@@ -21,7 +21,7 @@ def test_create_invalid_user(page):
     first_name = TestData.random_first_name()
     last_name = TestData.random_last_name()
     middle_name = TestData.random_first_name()
-    user_name = TestData.random_user_name()
+    user_name = f"title3_{TestData.random_user_name()}"
 
     login_page.login(Credentials.ADMIN_USER, Credentials.ADMIN_PASSWORD)
     #1. Create emp

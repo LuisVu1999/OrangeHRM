@@ -13,7 +13,7 @@ def test_delete_empy(page):
     middle_name = TestData.random_first_name()
     first_middle_name = f"{first_name} {middle_name}"
     employee_id = f"195{TestData.random_int()}"
-    user_name = TestData.random_user_name()
+    user_name = f"title9_{TestData.random_user_name()}"
 
     #Create Employee
     login_page.login(Credentials.ADMIN_USER, Credentials.ADMIN_PASSWORD)
