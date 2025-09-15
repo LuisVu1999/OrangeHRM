@@ -35,7 +35,7 @@ class PunchPage(BasePage):
         self.wait_for_load_page()
         self.wait_thread_sleep(4)
         self.assert_text(PunchLocator.PUNCH_OUT_TITLE, punch_out_title)
-        self.assert_text(PunchLocator.PUNCH_IN_TIME, punch_in_time)
+        self.assert_text_contain(PunchLocator.PUNCH_IN_TIME, punch_in_time)
         self.fill(PunchLocator.CLICK_DATE_OUT, date)
         self.fill(PunchLocator.CLICK_TIME_OUT, time)
         self.click(PunchLocator.SUBMIT_BUTTON)

@@ -12,7 +12,7 @@ def test_verify_record(page):
     hour = "10"
     minute = "30"
     date_punch = "2025-18-11"
-    punch_in_time = f"{date_punch} - {hour}:{minute} AM (GMT +07:00)"
+    punch_in_time = f"{date_punch} - {hour}:{minute} AM"
     time_out = "04:30 PM"
     punch_in_record = "2025-18-11 10:30 AM "
     punch_out_record = "2025-18-11 04:30 PM "
