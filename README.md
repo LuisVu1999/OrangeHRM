@@ -11,7 +11,7 @@
 ---
 
 ## 📖 Overview
-This framework was built as part of my portfolio project to demonstrate automation skills in Playwright + Pytest, covering UI and API testing for the OrangeHRM demo application.
+This framework was built as part of my portfolio project to demonstrate automation skills in Playwright + Pytest, covering UI testing for the OrangeHRM demo application.
 This repository contains a **modular automation framework** built with **Python, Playwright, and Pytest**.  The framework integrates seamlessly with CI/CD pipelines and generates rich Allure reports.
 
 ✨ Key features:
